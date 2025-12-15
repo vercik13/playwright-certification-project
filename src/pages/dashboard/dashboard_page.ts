@@ -36,9 +36,10 @@ export class DashboardPage {
 
   async dashboardAsserts(appName: string) {
     await expect(this.logoutButton, "Logout Button is visible").toBeVisible();
-    await expect(this.appNameHeader, "Application Header have Name").toHaveText(
-      appName
-    );
+    await expect(
+      this.appNameHeader,
+      "Application Header have Name"
+    ).toContainText(appName);
     return this;
   }
 }

@@ -12,6 +12,7 @@ export const tegbTexts = {
     usernamePlaceholger: "Uživatelské jméno",
     loginButton: "Zpět na přihlášení",
     submitButton: "Registrovat",
+    successMessage: "Registrace úspěšná! Vítejte v TEG#B!",
   },
 
   dashboard: {

@@ -15,5 +15,11 @@ test("Register New User", async ({ page }) => {
   console.log(email);
 
   const loginPage = new LoginPage(page);
-  await loginPage.open().then((login) => login.clickRegisterNewUser());
+  await loginPage
+    .open()
+    .then((login) => login.clickRegisterNewUser())
+    .then((registerNewUser) => registerNewUser.fillUsername(username))
+    .then((registerNewUser) => registerNewUser.fillPassword(password))
+    .then((registerNewUser) => registerNewUser.fillEmail(email))
+    .then((registerNewUser) => registerNewUser.clickRegister());
 });

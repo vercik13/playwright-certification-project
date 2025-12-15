@@ -1,4 +1,4 @@
-import { Locator, Page } from "@playwright/test";
+import { expect, Locator, Page } from "@playwright/test";
 import { LoginPage } from "../login/login_page.ts";
 
 export class RegisterPage {
@@ -7,6 +7,7 @@ export class RegisterPage {
   readonly passwordInput: Locator;
   readonly emailInput: Locator;
   readonly registerButton: Locator;
+  readonly successMessage: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -14,6 +15,7 @@ export class RegisterPage {
     this.passwordInput = page.locator('[data-testid="password-input"]');
     this.emailInput = page.locator('[data-testid="email-input"]');
     this.registerButton = page.locator('[data-testid="submit-button"]');
+    this.successMessage = page.locator('[data-testid="success-message"]');
   }
 
   async fillUsername(username: string) {
@@ -46,5 +48,12 @@ export class RegisterPage {
     await this.fillEmail(email);
     await this.clickRegister();
     return new LoginPage(this.page);
+  }
+
+  async registerAsserts(expectedMessage: string) {
+    await expect(this.successMessage, "Registration success").toContainText(
+      expectedMessage
+    );
+    return this;
   }
 }
