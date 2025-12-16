@@ -13,6 +13,7 @@ export class DashboardPage {
   readonly emailValue: Locator;
   readonly phoneValue: Locator;
   readonly ageValue: Locator;
+  readonly accountTableRow: Locator;
   readonly accountBalanceValue: Locator;
 
   constructor(page: Page) {
@@ -28,7 +29,8 @@ export class DashboardPage {
     this.emailValue = page.locator('[data-testid="email"]');
     this.phoneValue = page.locator('[data-testid="phone"]');
     this.ageValue = page.locator('[data-testid="age"]');
-    this.accountBalanceValue = page.locator('[data-testid="acount-balance"]');
+    this.accountBalanceValue = page.locator('[data-testid="account-balance"]');
+    this.accountTableRow = page.locator('[data-testid="account-row-0"]');
   }
 
   async clickEditProfile() {
@@ -55,8 +57,50 @@ export class DashboardPage {
       .toContainText(appName);
     await expect(
       this.editProfileButton,
-      "Edit Profile button is visible"
+      "Edit Profile Button is visible"
     ).toBeVisible();
+    return this;
+  }
+
+  async assertProfileDetails(expected: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    age: number;
+  }) {
+    await expect(
+      this.firstNameValue,
+      `Firstname should contain ${expected.firstName}`
+    ).toContainText(expected.firstName);
+    await expect(
+      this.lastNameValue,
+      `Lastname should contain ${expected.lastName}`
+    ).toContainText(expected.lastName);
+    await expect(
+      this.emailValue,
+      `Email should contain ${expected.email}`
+    ).toContainText(expected.email);
+    await expect(
+      this.phoneValue,
+      `Phone should contain ${expected.phone}`
+    ).toContainText(expected.phone);
+    await expect(
+      this.ageValue,
+      `Age should contain ${expected.age}`
+    ).toContainText(expected.age.toString());
+    return this;
+  }
+
+  async assertsAccount(expectedBalance: string) {
+    await expect(
+      this.accountTableRow,
+      "New bank account is visible"
+    ).toBeVisible();
+    await expect(
+      this.accountBalanceValue,
+      `Bank account amount should be ${expectedBalance}`
+    ).toHaveText(expectedBalance);
     return this;
   }
 }

@@ -20,6 +20,7 @@ test("E2E: Register and login new user, create new bank account via API", async 
   const phone = faker.phone.number();
   const age = faker.number.int({ min: 18, max: 99 });
   let accessToken = "";
+  let accountBalanceValue = "";
 
   await test.step("Register new user", async () => {
     const loginPage = new LoginPage(page);
@@ -58,11 +59,11 @@ test("E2E: Register and login new user, create new bank account via API", async 
       "Create Account Response Status should be 201"
     ).toEqual(201);
 
-    //const createAccountResponseBody = await createAccountResponse.json();
-    //console.log(createAccountResponseBody);
+    const createAccountResponseBody = await createAccountResponse.json();
+    accountBalanceValue = `${createAccountResponseBody.balance.toFixed(2)} Kč`;
   });
 
-  await test.step("Fill user profile details", async () => {
+  await test.step("Fill user profile details, verify profile and account details", async () => {
     const loginPage = new LoginPage(page);
     await loginPage
       .open()
@@ -76,6 +77,17 @@ test("E2E: Register and login new user, create new bank account via API", async 
       .then((profileDetails) => profileDetails.fillEmail(email))
       .then((profileDetails) => profileDetails.fillPhone(phone))
       .then((profileDetails) => profileDetails.fillAge(age.toString()))
-      .then((profileDetails) => profileDetails.clickSaveChangesButton());
+      .then((profileDetails) => profileDetails.clickSaveChangesButton())
+      .then((dashboard) =>
+        dashboard.assertProfileDetails({
+          firstName,
+          lastName,
+          email,
+          phone,
+          age,
+        })
+      )
+      .then((dashboard) => dashboard.assertsAccount(accountBalanceValue))
+      .then((dashboard) => dashboard.clickLogout());
   });
 });
