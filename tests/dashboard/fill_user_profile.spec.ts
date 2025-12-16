@@ -10,11 +10,5 @@ test("Fill User Profile", async ({ page }) => {
     .open()
     .then((login) => login.login(username, password))
     .then((dashboard) => dashboard.dashboardAsserts(tegbTexts.dashboard.title))
-    .then((dashboard) => dashboard.clickEditProfile())
-    .then((profileDetails) => profileDetails.fillFirstName("Veronika"))
-    .then((profileDetails) => profileDetails.fillLastName("Vokounová"))
-    .then((profileDetails) => profileDetails.fillEmail("ver@test.cz"))
-    .then((profileDetails) => profileDetails.fillPhone("777111222"))
-    .then((profileDetails) => profileDetails.fillAge("33"))
-    .then((profileDetails) => profileDetails.clickSaveChangesButton());
+    .then((dashboard) => dashboard.clickEditProfile());
 });

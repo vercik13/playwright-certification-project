@@ -10,9 +10,9 @@ test("API Login test", async ({ request }) => {
       },
     }
   );
-  const responseBody = await response.json();
+  const loginResponseBody = await response.json();
   expect(response.status(), "Response Status should be 201").toEqual(201);
-  expect(responseBody, "Login Response has access_token").toHaveProperty(
+  expect(loginResponseBody, "Login Response has access_token").toHaveProperty(
     "access_token"
   );
 });

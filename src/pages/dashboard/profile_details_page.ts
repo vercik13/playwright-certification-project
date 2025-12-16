@@ -60,4 +60,6 @@ export class ProfileDetailsPage {
     await this.saveChangesButton.click();
     return new DashboardPage(this.page);
   }
+
+  async profileDetailsAsserts() {}
 }
