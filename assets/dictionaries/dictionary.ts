@@ -18,5 +18,18 @@ export const tegbTexts = {
   dashboard: {
     title: "TEG#B Dashboard",
     logoutButton: "Odhlásit se",
+    profileDetailsTitle: "Detaily Profilu",
+    profileFirstNameLabel: "Jméno:",
+    profileLastNameLabel: "Příjmení:",
+    profileEmailLabel: "Email:",
+    profilePhoneLabel: "Telefon:",
+    profileAgeLabel: "Věk",
+    editProfileButton: "Upravit profil",
+    accountTitle: "Účty",
+    accountNumberTitle: "Číslo účtu",
+    accountBalanceTitle: "Zůstatek",
+    accountTypeTitle: "Typ účtu",
+    addAccountButton: "Přidat účet",
+    footerText: "© 2023 Banking App",
   },
 };

@@ -4,33 +4,79 @@ import { ProfileDetailsPage } from "./profile_details_page.ts";
 
 export class DashboardPage {
   readonly page: Page;
-  readonly editProfileButton: Locator;
-  readonly logoutButton: Locator;
-  readonly addAccountButton: Locator;
+  readonly logoImg: Locator;
   readonly appNameHeader: Locator;
+  readonly logoutButton: Locator;
+  readonly sidebarMenu: Locator;
+  readonly homeMenuItem: Locator;
+  readonly accountsMenuItem: Locator;
+  readonly transactionMenuItem: Locator;
+  readonly supportMenuItem: Locator;
+  readonly profileDetailsTab: Locator;
+  readonly profileDetailsTitle: Locator;
+  readonly editProfileButton: Locator;
   readonly firstNameValue: Locator;
   readonly lastNameValue: Locator;
   readonly emailValue: Locator;
   readonly phoneValue: Locator;
   readonly ageValue: Locator;
+  readonly accountTab: Locator;
+  readonly accountTitle: Locator;
+  readonly accountNumberTitle: Locator;
+  readonly accountBalanceTitle: Locator;
+  readonly accountTypeTitle: Locator;
+  readonly addAccountButton: Locator;
   readonly accountTableRow: Locator;
   readonly accountBalanceValue: Locator;
+  readonly footerText: Locator;
 
   constructor(page: Page) {
     this.page = page;
+    this.logoImg = page.locator('[data-testid="logo-img"]');
+    this.appNameHeader = page.locator('[data-testid="app-title"]');
+    this.logoutButton = page.locator('[data-testid="logout-button"]');
+    this.sidebarMenu = page.locator(".dashboard-sidebar");
+    this.homeMenuItem = page.locator(".dashboard-sidebar li", {
+      hasText: "Domů",
+    });
+    this.accountsMenuItem = page.locator(".dashboard-sidebar li", {
+      hasText: "Účty",
+    });
+    this.transactionMenuItem = page.locator(".dashboard-sidebar li", {
+      hasText: "Transakce",
+    });
+    this.supportMenuItem = page.locator(".dashboard-sidebar li", {
+      hasText: "Podpora",
+    });
+    this.profileDetailsTab = page.locator('[data-testid="account-summary"]');
+    this.profileDetailsTitle = page.locator(
+      '[data-testid="profile-details-title"]'
+    );
     this.editProfileButton = page.locator(
       '[data-testid="toggle-edit-profile-button"]'
     );
-    this.logoutButton = page.locator('[data-testid="logout-button"]');
-    this.addAccountButton = page.locator('[data-testid="add-account-button"]');
-    this.appNameHeader = page.locator('[data-testid="app-title"]');
     this.firstNameValue = page.locator('[data-testid="name"]');
     this.lastNameValue = page.locator('[data-testid="surname"]');
     this.emailValue = page.locator('[data-testid="email"]');
     this.phoneValue = page.locator('[data-testid="phone"]');
     this.ageValue = page.locator('[data-testid="age"]');
+    this.accountTab = page.locator(".accounts");
+    this.accountTitle = page.locator('[data-testid="accounts-title"]');
+    this.accountNumberTitle = page.locator(
+      '[data-testid="account-number-heading"]'
+    );
+    this.accountBalanceTitle = page.locator(
+      '[data-testid="account-balance-heading"]'
+    );
+    this.accountTypeTitle = page.locator(
+      '[data-testid="account-type-heading"]'
+    );
+
+    //
+    this.addAccountButton = page.locator('[data-testid="add-account-button"]');
     this.accountBalanceValue = page.locator('[data-testid="account-balance"]');
     this.accountTableRow = page.locator('[data-testid="account-row-0"]');
+    this.footerText = page.locator(".dashboard-footer");
   }
 
   async clickEditProfile() {
