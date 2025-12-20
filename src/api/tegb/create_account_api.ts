@@ -9,7 +9,7 @@ export class CreateAccountApi {
     this.apiUrl = process.env.TEGB_APIURL as string;
   }
 
-  async createAccount(accessToken: string) {
+  async createAccount(accessToken: string, startBalance: number) {
     const createAccountResponse = await this.request.post(
       `${this.apiUrl}/accounts/create`,
       {
@@ -18,7 +18,7 @@ export class CreateAccountApi {
           Authorization: `Bearer ${accessToken}`,
         },
         data: {
-          startBalance: 10000,
+          startBalance,
           type: "Test",
         },
       }

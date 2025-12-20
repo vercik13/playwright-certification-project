@@ -17,24 +17,6 @@ test.describe("DDT: Account balances test", () => {
         provider: "example.cz",
       });
       let accessToken = "";
-      const mockedApi = [
-        {
-          _id: "6626f7f13fcf6b9a1fc88191",
-          userId: username,
-          accountId: "5454",
-          balance: data.balance,
-          transactionLimits: {
-            dailyLimit: 5555,
-            monthlyLimit: 99999,
-            _id: "6626f7f13fcf6b9a1fc88192",
-          },
-          accountType: "PLAYWRIGHT MOCK",
-          loginHistory: [],
-          transactionHistory: [],
-          createdAt: "2024-04-22T23:51:13.095Z",
-          __v: 0,
-        },
-      ];
       let newDashboardView: DashboardPage;
 
       await test.step("Register new user", async () => {
@@ -69,7 +51,8 @@ test.describe("DDT: Account balances test", () => {
       await test.step("API: Create new bank accounts for new users", async () => {
         const apiAccount = new CreateAccountApi(request);
         const createAccountResponse = await apiAccount.createAccount(
-          accessToken
+          accessToken,
+          data.balance
         );
         expect(
           createAccountResponse.status(),
@@ -77,11 +60,7 @@ test.describe("DDT: Account balances test", () => {
         ).toEqual(201);
       });
 
-      await test.step("Mocking API and verify balance account FE", async () => {
-        await page.route(/accounts/, async (interceptedApi) => {
-          await interceptedApi.fulfill({ json: mockedApi });
-        });
-
+      await test.step("Verify balance account FE", async () => {
         const loginPage = new LoginPage(page);
         newDashboardView = await loginPage
           .open()

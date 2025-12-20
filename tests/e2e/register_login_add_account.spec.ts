@@ -21,6 +21,7 @@ test("E2E: Register and login new user, create new bank account via API", async 
   const age = faker.number.int({ min: 18, max: 99 });
   let accessToken = "";
   let accountBalanceValue = "";
+  const startBalance = 10000;
 
   await test.step("Register new user", async () => {
     const loginPage = new LoginPage(page);
@@ -53,7 +54,10 @@ test("E2E: Register and login new user, create new bank account via API", async 
 
   await test.step("API: Create new bank account", async () => {
     const apiAccount = new CreateAccountApi(request);
-    const createAccountResponse = await apiAccount.createAccount(accessToken);
+    const createAccountResponse = await apiAccount.createAccount(
+      accessToken,
+      startBalance
+    );
     expect(
       createAccountResponse.status(),
       "Create Account Response Status should be 201"
