@@ -39,9 +39,7 @@ test.describe("Atomic tests: Test Dashboard Page", () => {
         .soft(newDashboardView.transactionMenuItem)
         .toHaveText("Transakce");
       await expect.soft(newDashboardView.supportMenuItem).toBeVisible();
-      await expect
-        .soft(newDashboardView.transactionMenuItem)
-        .toHaveText("Transakce");
+      await expect.soft(newDashboardView.supportMenuItem).toHaveText("Podpora");
     });
 
     await test.step("Profile Details", async () => {

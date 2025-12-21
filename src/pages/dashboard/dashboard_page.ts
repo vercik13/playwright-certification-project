@@ -36,12 +36,10 @@ export class DashboardPage {
     this.appNameHeader = page.locator('[data-testid="app-title"]');
     this.logoutButton = page.locator('[data-testid="logout-button"]');
     this.sidebarMenu = page.locator(".dashboard-sidebar");
-    this.homeMenuItem = page.locator('//li[contains(text(),"Domů")]');
-    this.accountsMenuItem = page.locator('//li[contains(text(),"Účty")]');
-    this.transactionMenuItem = page.locator(
-      '//li[contains(text(),"Transakce")]'
-    );
-    this.supportMenuItem = page.locator('//li[contains(text(),"Podpora")]');
+    this.homeMenuItem = page.locator(".dashboard-sidebar li").nth(0);
+    this.accountsMenuItem = page.locator(".dashboard-sidebar li").nth(1);
+    this.transactionMenuItem = page.locator(".dashboard-sidebar li").nth(2);
+    this.supportMenuItem = page.locator(".dashboard-sidebar li").nth(3);
     this.profileDetailsTab = page.locator('[data-testid="account-summary"]');
     this.profileDetailsTitle = page.locator(
       '[data-testid="profile-details-title"]'

@@ -9,6 +9,7 @@ test("E2E: Register and login new user, create new bank account via API", async 
   page,
   request,
 }) => {
+  const loginPage = new LoginPage(page);
   const username = faker.internet.username();
   const password = faker.internet.password({ length: 10 });
   const email = faker.internet.email({
@@ -24,7 +25,6 @@ test("E2E: Register and login new user, create new bank account via API", async 
   const startBalance = 10000;
 
   await test.step("Register new user", async () => {
-    const loginPage = new LoginPage(page);
     await loginPage
       .open()
       .then((login) => login.clickRegisterNewUser())
@@ -68,7 +68,6 @@ test("E2E: Register and login new user, create new bank account via API", async 
   });
 
   await test.step("Fill user profile details, verify profile and account details", async () => {
-    const loginPage = new LoginPage(page);
     await loginPage
       .open()
       .then((login) => login.login(username, password))
