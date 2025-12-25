@@ -29,6 +29,7 @@ export class DashboardPage {
   readonly accountTableRow: Locator;
   readonly accountBalanceValue: Locator;
   readonly footerText: Locator;
+  readonly profileDetailsSection: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -69,6 +70,9 @@ export class DashboardPage {
     this.accountBalanceValue = page.locator('[data-testid="account-balance"]');
     this.accountTableRow = page.locator('[data-testid="account-row-0"]');
     this.footerText = page.locator(".dashboard-footer");
+    this.profileDetailsSection = page.locator(
+      '[data-testid="account-summary"]'
+    );
   }
 
   async clickEditProfile() {
@@ -139,6 +143,13 @@ export class DashboardPage {
       this.accountBalanceValue,
       `Bank account amount should be ${expectedBalance}`
     ).toHaveText(expectedBalance);
+    return this;
+  }
+
+  async profileDetailsVisualCheck() {
+    await expect(this.profileDetailsSection).toHaveScreenshot(
+      "profile_details_check.png"
+    );
     return this;
   }
 }
