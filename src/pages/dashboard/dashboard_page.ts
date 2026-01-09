@@ -15,10 +15,15 @@ export class DashboardPage {
   readonly profileDetailsTab: Locator;
   readonly profileDetailsTitle: Locator;
   readonly editProfileButton: Locator;
+  readonly firstNameLabel: Locator;
   readonly firstNameValue: Locator;
+  readonly lastNameLabel: Locator;
   readonly lastNameValue: Locator;
+  readonly emailLabel: Locator;
   readonly emailValue: Locator;
+  readonly phoneLabel: Locator;
   readonly phoneValue: Locator;
+  readonly ageLabel: Locator;
   readonly ageValue: Locator;
   readonly accountTab: Locator;
   readonly accountTitle: Locator;
@@ -48,6 +53,11 @@ export class DashboardPage {
     this.editProfileButton = page.locator(
       '[data-testid="toggle-edit-profile-button"]'
     );
+    this.firstNameLabel = page.locator('[data-testid="name"] strong');
+    this.lastNameLabel = page.locator('[data-testid="surname"] strong');
+    this.emailLabel = page.locator('[data-testid="email"] strong');
+    this.phoneLabel = page.locator('[data-testid="phone"] strong');
+    this.ageLabel = page.locator('[data-testid="age"] strong');
     this.firstNameValue = page.locator('[data-testid="name"]');
     this.lastNameValue = page.locator('[data-testid="surname"]');
     this.emailValue = page.locator('[data-testid="email"]');
@@ -104,7 +114,7 @@ export class DashboardPage {
     return this;
   }
 
-  async assertProfileDetails(expected: {
+  async assertProfileDetailsValues(expected: {
     firstName: string;
     lastName: string;
     email: string;
@@ -131,6 +141,36 @@ export class DashboardPage {
       this.ageValue,
       `Age should contain ${expected.age}`
     ).toContainText(expected.age.toString());
+    return this;
+  }
+
+  async assertProfileDetailsLabels(expected: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    age: number;
+  }) {
+    await expect(
+      this.firstNameLabel,
+      `Firstname should contain ${expected.firstName}`
+    ).toHaveText(expected.firstName);
+    await expect(
+      this.lastNameLabel,
+      `Lastname should contain ${expected.lastName}`
+    ).toHaveText(expected.lastName);
+    await expect(
+      this.emailLabel,
+      `Email should contain ${expected.email}`
+    ).toHaveText(expected.email);
+    await expect(
+      this.phoneLabel,
+      `Phone should contain ${expected.phone}`
+    ).toHaveText(expected.phone);
+    await expect(
+      this.ageLabel,
+      `Age should contain ${expected.age}`
+    ).toHaveText(expected.age.toString());
     return this;
   }
 

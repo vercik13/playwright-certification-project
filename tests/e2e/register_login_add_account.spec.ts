@@ -82,7 +82,7 @@ test("E2E: Register and login new user, create new bank account via API", async 
       .then((profileDetails) => profileDetails.fillAge(age.toString()))
       .then((profileDetails) => profileDetails.clickSaveChangesButton())
       .then((dashboard) =>
-        dashboard.assertProfileDetails({
+        dashboard.assertProfileDetailsValues({
           firstName,
           lastName,
           email,

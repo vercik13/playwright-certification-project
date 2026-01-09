@@ -23,7 +23,7 @@ export const tegbTexts = {
     profileLastNameLabel: "Příjmení:",
     profileEmailLabel: "Email:",
     profilePhoneLabel: "Telefon:",
-    profileAgeLabel: "Věk",
+    profileAgeLabel: "Věk:",
     editProfileButton: "Upravit profil",
     accountTitle: "Účty",
     accountNumberTitle: "Číslo účtu",

@@ -48,26 +48,26 @@ test.describe("Atomic tests: Test Dashboard Page", () => {
       await expect
         .soft(newDashboardView.profileDetailsTitle)
         .toHaveText(tegbTexts.dashboard.profileDetailsTitle);
-      await expect.soft(newDashboardView.firstNameValue).toBeVisible();
+      await expect.soft(newDashboardView.firstNameLabel).toBeVisible();
       await expect
-        .soft(newDashboardView.firstNameValue)
-        .toContainText(tegbTexts.dashboard.profileFirstNameLabel);
-      await expect.soft(newDashboardView.lastNameValue).toBeVisible();
+        .soft(newDashboardView.firstNameLabel)
+        .toHaveText(tegbTexts.dashboard.profileFirstNameLabel);
+      await expect.soft(newDashboardView.lastNameLabel).toBeVisible();
       await expect
-        .soft(newDashboardView.lastNameValue)
-        .toContainText(tegbTexts.dashboard.profileLastNameLabel);
-      await expect.soft(newDashboardView.emailValue).toBeVisible();
+        .soft(newDashboardView.lastNameLabel)
+        .toHaveText(tegbTexts.dashboard.profileLastNameLabel);
+      await expect.soft(newDashboardView.emailLabel).toBeVisible();
       await expect
-        .soft(newDashboardView.emailValue)
-        .toContainText(tegbTexts.dashboard.profileEmailLabel);
-      await expect.soft(newDashboardView.phoneValue).toBeVisible();
+        .soft(newDashboardView.emailLabel)
+        .toHaveText(tegbTexts.dashboard.profileEmailLabel);
+      await expect.soft(newDashboardView.phoneLabel).toBeVisible();
       await expect
-        .soft(newDashboardView.phoneValue)
-        .toContainText(tegbTexts.dashboard.profilePhoneLabel);
-      await expect.soft(newDashboardView.ageValue).toBeVisible();
+        .soft(newDashboardView.phoneLabel)
+        .toHaveText(tegbTexts.dashboard.profilePhoneLabel);
+      await expect.soft(newDashboardView.ageLabel).toBeVisible();
       await expect
-        .soft(newDashboardView.ageValue)
-        .toContainText(tegbTexts.dashboard.profileAgeLabel);
+        .soft(newDashboardView.ageLabel)
+        .toHaveText(tegbTexts.dashboard.profileAgeLabel);
       await expect.soft(newDashboardView.editProfileButton).toBeVisible();
       await expect
         .soft(newDashboardView.editProfileButton)
@@ -106,6 +106,3 @@ test.describe("Atomic tests: Test Dashboard Page", () => {
     });
   });
 });
-
-//  .then((dashboard) => dashboard.dashboardAsserts(tegbTexts.dashboard.title))
-// .then((dashboard) => dashboard.clickEditProfile());
